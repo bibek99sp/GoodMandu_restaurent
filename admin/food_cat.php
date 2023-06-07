@@ -10,10 +10,10 @@
    <tr align="center">   
    	    <td> 
    	    	<select class="text" name="cat">
-   	    		<option value="kathiyawadi">Momo</option>
-   	    		<option value="rajsthani">Chowmein</option>
-   	    		<option value="rise">Dal Bhat</option>
-   	    		<option value="tava">Burger</option>
+   	    		<option value="momo">Momo</option>
+   	    		<option value="chowmein">Chowmein</option>
+   	    		<option value="dal-bhat">Dal Bhat</option>
+   	    		<option value="burger">Burger</option>
    	    	</select>
    	    </td>
    	</tr>  

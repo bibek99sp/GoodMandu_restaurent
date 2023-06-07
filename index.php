@@ -114,7 +114,7 @@
 				</div>
 				
 				<div class="col-9">
-					<div class="tab-content" id="v-pills-tabContent">
+				<div class="tab-content" id="v-pills-tabContent">
 						<div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
 							<div class="row">
 								<?php include "connect.php";
@@ -195,12 +195,6 @@
 							</div>
 							
 						</div>
-
-						
-
-
-
-
 						<div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
 							<div class="row">
 								
@@ -236,13 +230,85 @@
 									</div>
 								</div>
 								<?php } ?>
+								
+								
+								
 							</div>
-
-						
 						</div>
-					
+						<div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+							<div class="row">
+                             <?php include "connect.php";
+								$s = mysqli_query($con,"select * from menu where category='Dal Bhat'");
+								while($r = mysqli_fetch_array($s))
+								{	
+								?>
+								<div class="col-lg-4 col-md-6 special-grid drinks">
+									<div class="gallery-single fix">
+										<img src="admin/<?php echo $r['image']; ?>" class="img-fluid" alt="Image" style='width: 263px; height:170px;'>
+										<div class="why-text">
+											<h4><?php echo $r['title']; ?></h4>
+											<p><?php echo $r['description']; ?></p>
+											<h5>Rs <?php echo $r['price']; ?> /-</h5>
+											<h5 align="center">
+											 <?php if(isset($_SESSION['uid']))
+									{
+									?>
+											<a href="addcart.php?pid=<?php echo $r['id']; ?>&uid=<?php echo $_SESSION['uid']; ?>&price=<?php echo $r['price']; ?>">Add Cart</a></h5>
+
+									<?php
+									}
+									else
+									{
+									?>
+										<a href="login.php">Add Cart</a>
+									<?php } ?>
+	
+
+											</h5>
+										</div>
+									</div>
+								</div>
+								<?php } ?>     
+						</div>
+					</div>		
+ 
+                          
+						<div class="tab-pane fade" id="v-pills-tava" role="tabpanel" aria-labelledby="v-pills-tava-tab">
+							<div class="row">
+								<?php include "connect.php";
+								$s = mysqli_query($con,"select * from menu where category='Burger'");
+								while($r = mysqli_fetch_array($s))
+								{	
+								?>
+								<div class="col-lg-4 col-md-6 special-grid drinks">
+									<div class="gallery-single fix">
+										<img src="admin/<?php echo $r['image']; ?>" class="img-fluid" alt="Image" style='width: 263px; height:170px;'>
+										<div class="why-text">
+											<h4><?php echo $r['title']; ?></h4>
+											<p><?php echo $r['description']; ?></p>
+											<h5>Rs <?php echo $r['price']; ?> /-</h5>
+											<h5 align="center"><?php if(isset($_SESSION['uid']))
+									{
+									?>
+											<a href="addcart.php?pid=<?php echo $r['id']; ?>&uid=<?php echo $_SESSION['uid']; ?>&price=<?php echo $r['price']; ?>">Add Cart</a></h5>
+
+									<?php
+									}
+									else
+									{
+									?>
+										<a href="login.php">Add Cart</a>
+									<?php } ?></h5>
+										</div>
+									</div>
+								</div>
+								<?php } ?>	
+
+								
+							
+							</div>
+						</div>
 					</div>
-				</div>
 			</div>
 		</div>
 	</div>
