@@ -408,3 +408,11 @@ COMMIT;
 
 
 
+CREATE table rate(
+  id int not NULL,
+  rate int not null,
+  p_id int not null,
+  userid int not null,
+  PRIMARY KEY(id)
+  foreign key p_id references 
+);
