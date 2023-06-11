@@ -17,9 +17,6 @@ if(isset($_SESSION['uid']))
 	{
 		$p_id = $r['p_id'];
 		mysqli_query($con,"insert into checkout(p_id, u_id,name,mobile,email,location) values('$p_id','$uid','$nm','$mo','$em','$ad')") or die("Error");
-	?>
-		
-	<?php
 	}
 
 
