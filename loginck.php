@@ -9,6 +9,7 @@ $s = mysqli_query($con,"select * from registration where userid='$u' and passwor
 if($r = mysqli_fetch_array($s))
 {
 		$_SESSION['uid'] = $u;
+		$_SESSION['id'] = $r['id'];
 		header("location:index.php");
 
 }

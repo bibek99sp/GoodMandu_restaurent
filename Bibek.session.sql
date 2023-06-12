@@ -422,12 +422,12 @@ VALUES (
         'aaabb@y.com'
     ), (
         4,
-        'abcd',
-        'ppp',
-        'abc@yahoo.com'
+        'bibek',
+        'bibek',
+        'bibek@yahoo.com'
     ), (
         5,
-        'abcd',
+        'abcde',
         'asdf',
         'abc@yahoo.com'
     );
@@ -473,13 +473,7 @@ VALUES (
         'Good Foods'
     );
 
-CREATE TABLE ratings (
-    id bigint(12) NOT NULL AUTO_INCREMENT,
-    userid varchar(50) NOT NULL,
-    pid BIGINT NOT NULL,
-    rating INT NOT NULL,
-    PRIMARY KEY (id)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 
 
 -- Indexes for dumped tables
@@ -626,6 +620,42 @@ ALTER TABLE
     `review` MODIFY `id` bigint(12) NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 10;
 
+CREATE TABLE ratings (
+    id bigint(12) NOT NULL AUTO_INCREMENT,
+    userid bigint(12) NOT NULL,
+    pid bigint(12) NOT NULL,
+    rating INT NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (userid) REFERENCES registration(id),
+    FOREIGN KEY (pid) REFERENCES menu(id)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+SET @sql = NULL;
+SELECT GROUP_CONCAT(
+    DISTINCT CONCAT(
+      'COALESCE(MAX(IFNULL(CASE WHEN u.id = ',
+      id,
+      ' THEN r.rating END, 0)), 0) AS `',
+      userid,
+      '`'
+    )
+  ) INTO @sql
+FROM registration;
+
+SET @sql = CONCAT(
+    'CREATE OR REPLACE VIEW product_ratings_view_no_book_name AS
+SELECT ',
+    @sql,
+    '
+FROM menu p
+LEFT JOIN ratings r ON p.id = r.pid
+LEFT JOIN registration u ON r.userid = u.id
+GROUP BY p.id'
+  );
+
+PREPARE stmt FROM @sql;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
 -- RATING TABLE
 
 -- Userid, productid, rating
