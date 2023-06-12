@@ -1,4 +1,7 @@
-<?php include "header.php"; ?>	
+<?php session_start(); ?>
+
+<?php include "header.php"; 
+?>	
 	<!-- Start All Pages -->
 	<div class="all-page-title page-breadcrumb">
 		<div class="container text-center">
