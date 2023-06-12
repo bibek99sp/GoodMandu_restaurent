@@ -39,7 +39,7 @@
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<div class="container">
 				<a class="navbar-brand" href="index.php">
-					<img src="images/logo1.png" alt="" width="105%" height="105"/>
+					<img src="images/logo1.png" alt="" width="50" height="50"/>
 				</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
 				  <span class="navbar-toggler-icon"></span>
@@ -70,7 +70,14 @@
 						<li class="nav-item"><a class="nav-link" href="about.php">About Us</a></li>
 						<li class="nav-item"><a class="nav-link" href="contact.php">Contact Us</a></li>
 						<li class="nav-item"><a class="nav-link" href="review.php">Review</a></li>
+						<?php
+						if (isset($_SESSION['uid'])) {
+							?>
 						<li class="nav-item"><a class="nav-link" href="rate.php">Rate</a></li>
+						<?php
+						}
+						?>
+						<li class="nav-item"><a class="nav-link" href="top.php">Top Foods</a></li>
 
 						
 
